@@ -1,0 +1,30 @@
+Piano for Schwung
+=================
+
+Copyright (c) 2026 CairnDebil (https://github.com/CairnDebil).
+
+Questo modulo e' distribuito con licenza GNU Lesser General Public License v3.0
+(LICENSE), che incorpora la GNU General Public License v3.0
+(licenses/GPL-3.0.txt).
+
+Componenti di terze parti
+-------------------------
+
+Motore audio (dsp.so)
+  Binario NON modificato del Multisampler v0.6.6 di Charles Vestal
+  (https://github.com/charlesvestal/schwung-sfz, release v0.6.6, LGPL-3.0),
+  scaricato da scripts/build.sh e verificato con SHA-256. Include staticamente
+  xsynth (https://github.com/arduano/xsynth, LGPL-3.0), nella versione del fork
+  https://github.com/charlesvestal/xsynth (branch schwung-fork), piu' i crate
+  Rust elencati in licenses/THIRD_PARTY_RUST.txt (licenze MIT, Apache-2.0,
+  MPL-2.0, Zlib, BSD e Unicode, compatibili con LGPL-3.0).
+  Il sorgente completo corrispondente a dsp.so e' disponibile nel repository
+  del Multisampler indicato sopra e nei suoi sottomoduli.
+
+Campioni (instruments/Klaviano)
+  "Manthey Klaviano" v1.1 di Michele Pedrazzi, da Pianobook
+  (https://www.pianobook.co.uk/). I file audio sono stati convertiti da WAV
+  24 bit a FLAC 24 bit senza perdita e i percorsi del preset adattati.
+  I campioni mantengono la licenza dell'autore (vedi
+  instruments/Klaviano/ReadMe.txt e la pagina Pianobook) e non sono coperti
+  dalla LGPL di questo modulo.

@@ -1,0 +1,9 @@
+build/
+dist/
+*.so
+*.tar.gz
+.DS_Store
+# generato dal motore al primo caricamento del preset
+*.converted.sfz
+# cache opzionali del motore
+*.x44c

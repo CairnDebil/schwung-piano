@@ -1,0 +1,87 @@
+{
+  "title": "Piano",
+  "children": [
+    {
+      "title": "Panoramica",
+      "lines": [
+        "Pianoforte pronto",
+        "all'uso.",
+        "",
+        "Suona il Manthey",
+        "Klaviano, uno spinet",
+        "costruito a Berlino",
+        "negli anni 60-70.",
+        "",
+        "Campioni integrati:",
+        "4 livelli di dinamica,",
+        "2 round robin e",
+        "rumori di rilascio.",
+        "",
+        "Pad e tastiera MIDI",
+        "sensibili alla",
+        "velocity."
+      ]
+    },
+    {
+      "title": "Manopole",
+      "lines": [
+        "Attack:",
+        "attacco del suono.",
+        "",
+        "Release:",
+        "durata del rilascio",
+        "dopo aver tolto il",
+        "dito dal tasto.",
+        "",
+        "Tone:",
+        "filtro passa-basso.",
+        "Verso sinistra il",
+        "suono si scurisce.",
+        "",
+        "Octave:",
+        "trasposizione da",
+        "-4 a +4 ottave.",
+        "",
+        "Gain: volume.",
+        "Voices: polifonia."
+      ]
+    },
+    {
+      "title": "Effetti",
+      "lines": [
+        "Il riverbero del",
+        "preset originale e'",
+        "gia' incluso.",
+        "",
+        "Per chorus ed eco",
+        "metti un effetto",
+        "dopo Piano nella",
+        "catena (ad esempio",
+        "Junologue Chorus o",
+        "SpaceEcho).",
+        "",
+        "Funverb: riverbero",
+        "aggiuntivo del",
+        "motore."
+      ]
+    },
+    {
+      "title": "Crediti",
+      "lines": [
+        "Campioni:",
+        "Manthey Klaviano",
+        "di Michele Pedrazzi",
+        "(pianobook.co.uk)",
+        "",
+        "Motore:",
+        "Multisampler di",
+        "charlesvestal",
+        "basato su xsynth",
+        "(LGPL-3.0)",
+        "",
+        "Modulo Piano:",
+        "CairnDebil"
+      ]
+    }
+  ]
+}

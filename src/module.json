@@ -1,0 +1,93 @@
+{
+  "id": "piano",
+  "name": "Piano",
+  "abbrev": "PNO",
+  "version": "0.1.0",
+  "description": "Pianoforte pronto all'uso: Manthey Klaviano (spinet tedesco anni '60-'70) con campioni integrati, 4 livelli di dinamica, round robin e rumori di rilascio.",
+  "author": "CairnDebil",
+  "license": "LGPL-3.0",
+  "component_type": "sound_generator",
+  "ui": "ui.js",
+  "dsp": "dsp.so",
+  "api_version": 2,
+  "capabilities": {
+    "audio_out": true,
+    "audio_in": false,
+    "midi_in": true,
+    "midi_out": true,
+    "aftertouch": true,
+    "chainable": true,
+    "component_type": "sound_generator",
+    "ui_hierarchy": {
+      "levels": {
+        "root": {
+          "name": "Piano",
+          "params": [
+            {
+              "key": "preset",
+              "label": "Instrument",
+              "type": "int",
+              "min": 0,
+              "max_param": "preset_count",
+              "default": 0
+            },
+            {
+              "key": "octave_transpose",
+              "label": "Octave",
+              "type": "int",
+              "min": -4,
+              "max": 4,
+              "default": 0
+            },
+            {
+              "key": "gain",
+              "label": "Gain",
+              "type": "float",
+              "min": 0,
+              "max": 2,
+              "default": 0.7
+            },
+            {
+              "key": "funverb",
+              "label": "Funverb",
+              "type": "float",
+              "min": 0,
+              "max": 1,
+              "default": 0.0
+            },
+            {
+              "key": "voices",
+              "label": "Voices",
+              "type": "int",
+              "min": 4,
+              "max": 128,
+              "default": 14
+            },
+            {
+              "key": "knob_preset",
+              "short_name": "Preset",
+              "label": "Knob Preset",
+              "type": "int",
+              "min": 0,
+              "max": 7,
+              "default": 0
+            }
+          ],
+          "knobs": [
+            "knob_0",
+            "knob_1",
+            "knob_2",
+            "knob_3",
+            "knob_4",
+            "knob_5",
+            "knob_6",
+            "knob_7"
+          ]
+        }
+      }
+    }
+  },
+  "defaults": {
+    "preset": 0
+  }
+}

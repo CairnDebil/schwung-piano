@@ -1,0 +1,83 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Verify version match
+        run: |
+          TAG_VERSION="${GITHUB_REF_NAME#v}"
+          MODULE_VERSION=$(grep '"version"' src/module.json | head -1 | sed 's/.*"version"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/')
+          if [ "$TAG_VERSION" != "$MODULE_VERSION" ]; then
+            echo "ERROR: il tag ($TAG_VERSION) non corrisponde alla versione in module.json ($MODULE_VERSION)"
+            echo "Aggiorna src/module.json a $TAG_VERSION prima di creare il tag."
+            exit 1
+          fi
+          echo "Version check passed: $TAG_VERSION"
+
+      - name: Test offline
+        run: ./scripts/test.sh
+
+      - name: Build module
+        run: ./scripts/build.sh
+
+      - name: Release notes
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          awk -v v="$VERSION" '
+            $0 ~ "^## \\[" v "\\]" { found=1; next }
+            found && /^## \[/ { exit }
+            found { print }
+          ' CHANGELOG.md > release_notes.md
+          if [ ! -s release_notes.md ]; then
+            echo "ERRORE: sezione $VERSION mancante in CHANGELOG.md"; exit 1
+          fi
+          {
+            echo ""
+            echo "Installazione: copia la cartella \`piano\` in \`/data/UserData/schwung/modules/sound_generators/\` sul Move e riavvia Schwung."
+          } >> release_notes.md
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: dist/piano-module.tar.gz
+          body_path: release_notes.md
+          prerelease: ${{ startsWith(github.ref_name, 'v0.') || contains(github.ref_name, '-') }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  publish-release-json:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Commit release.json
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          BASE="https://github.com/${{ github.repository }}/releases/download/${{ github.ref_name }}"
+          REPO="https://github.com/${{ github.repository }}"
+          git fetch origin main
+          git checkout -f main
+          jq --arg v "$VERSION" --arg b "$BASE" --arg r "$REPO" '
+            .version = $v | .download_url = ($b + "/piano-module.tar.gz") | .repo_url = $r
+            | .modules["piano"].version = $v | .modules["piano"].download_url = ($b + "/piano-module.tar.gz") | .modules["piano"].repo_url = $r
+          ' release.json > release.json.new && mv release.json.new release.json
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add release.json
+          git commit -m "chore: update release.json for ${{ github.ref_name }}" || echo "No changes to commit"
+          git push origin main

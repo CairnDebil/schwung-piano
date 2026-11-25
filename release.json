@@ -1,0 +1,16 @@
+{
+  "version": "0.1.0",
+  "download_url": "https://github.com/CairnDebil/schwung-piano/releases/download/v0.1.0/piano-module.tar.gz",
+  "name": "Piano",
+  "description": "Pianoforte pronto all'uso: Manthey Klaviano (spinet tedesco anni '60-'70) con campioni integrati, 4 livelli di dinamica, round robin e rumori di rilascio.",
+  "repo_url": "https://github.com/CairnDebil/schwung-piano",
+  "modules": {
+    "piano": {
+      "version": "0.1.0",
+      "download_url": "https://github.com/CairnDebil/schwung-piano/releases/download/v0.1.0/piano-module.tar.gz",
+      "name": "Piano",
+      "description": "Pianoforte pronto all'uso: Manthey Klaviano (spinet tedesco anni '60-'70) con campioni integrati, 4 livelli di dinamica, round robin e rumori di rilascio.",
+      "repo_url": "https://github.com/CairnDebil/schwung-piano"
+    }
+  }
+}
